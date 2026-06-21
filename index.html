@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1">
+<title>Supplements</title>
+
+<!-- iOS PWA setup (same approach as Neutrino) -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Supplements">
+<meta name="theme-color" content="#1a1330">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<link rel="manifest" href="manifest.json">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Prata&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="app-header">
+  <h1>Today's Supplements</h1>
+  <div class="day-progress" id="dayProgress">
+    <div class="day-progress-bar"><div class="day-progress-fill" id="dayProgressFill"></div></div>
+    <span id="dayProgressLabel">0 / 0 taken</span>
+  </div>
+</header>
+
+<main id="slotList" class="slot-list"></main>
+
+<template id="slotTemplate">
+  <section class="slot-card">
+    <div class="slot-header">
+      <span class="slot-time"></span>
+      <span class="slot-status"></span>
+    </div>
+    <ul class="item-list"></ul>
+  </section>
+</template>
+
+<script src="schedule.js"></script>
+<script src="app.js"></script>
+<script>
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+      navigator.serviceWorker.register("service-worker.js").catch(() => {});
+    });
+  }
+</script>
+</body>
+</html>
